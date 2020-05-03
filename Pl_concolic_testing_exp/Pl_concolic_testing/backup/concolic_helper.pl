@@ -1,0 +1,2 @@
+
+:- module(concolic_helper, []).
