@@ -69,7 +69,8 @@ void z3Manager::z3Bundle::mk_term_type(TList *tlist, bool need_int, bool need_li
     if (need_lists)
         sort_names[ID_TERMLIST] = Z3_mk_string_symbol(m_ctx, "TermList");
 
-    Z3_sort sorts[numtype] = {0}; // 0?
+    Z3_sort sorts[numtype];
+    for (unsigned i = 0; i < numtype; i++) sorts[i] = 0;
 
     vector<Z3_symbol> consnames__term;
     vector<Z3_constructor> cons__term;
