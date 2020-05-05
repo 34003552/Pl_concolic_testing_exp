@@ -30,7 +30,7 @@ class z3Manager::z3Bundle
 		};
 		std::vector<z3Constructor> ctors;
 	};
-	std::map<std::string, z3Datatype> m_types;
+	std::map<const char*, z3Datatype> m_types;
 
 	struct z3NumVars
 	{
