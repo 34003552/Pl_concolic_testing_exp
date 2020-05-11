@@ -152,14 +152,13 @@ static foreign_t pl_mk_int_vars(term_t ind, term_t varlist)
 
         if (varnames == NULL)
         {
-            varnames = malloc(strlen(varname) + 1); // null-terminated
-            strcpy(varnames, varname);
+            varnames = malloc(1 + strlen(varname) + 1 + 1); // null-terminated
+            sprintf(varnames, "\"%s\"", varname);
         }
         else
         {
-            varnames = realloc(varnames, strlen(varnames) + 2 + strlen(varname) + 1); // null-terminated
-            strcat(varnames, ", ");
-            strcat(varnames, varname);
+            varnames = realloc(varnames, strlen(varnames) + 2 + 1 + strlen(varname) + 1 + 1); // null-terminated
+            sprintf(varnames + strlen(varnames), ", \"%s\"", varname);
         }
     }
 
@@ -380,7 +379,7 @@ static foreign_t pl_get_model_intvar_eval(term_t ind, term_t varname, term_t var
 
     pl_iolog__printf("%s\n", __func__);
     pl_iolog__printf("\tin context_id: int = %d\n", i);
-    pl_iolog__printf("\tin var_name: string = \"%s\"\n", varname);
+    pl_iolog__printf("\tin var_name: string = \"%s\"\n", vn);
     pl_iolog__printf("\tout var_value: int = %d\n", val);
 
     return PL_unify_integer(varval, val);
@@ -443,6 +442,7 @@ install_t install()
 
 extern void cpp__z3_mk_term__get_app(int index, void *v, void **app);
 extern void cpp__z3_mk_term__get_functor(int index, void *app, char **name, int *arity);
+extern void cpp__z3_mk_term__get_app_arg_as_int(int index, void *app, int j, int *app_arg);
 extern void cpp__z3_mk_term__get_app_arg(int index, void *app, int j, void **app_arg);
 term_t mk_term(int index, void *v)
 {
@@ -453,10 +453,21 @@ term_t mk_term(int index, void *v)
     cpp__z3_mk_term__get_app(index, v, &app);
     cpp__z3_mk_term__get_functor(index, app, &name, &arity);
 
+    int dummy;
+
+    if (strcmp(name, "term_from_int") == 0)
+    {
+        term_t term = PL_new_term_ref();
+
+        int arg;
+        cpp__z3_mk_term__get_app_arg_as_int(index, app, 0, &arg);
+        dummy = PL_put_integer(term, arg);
+        return term;
+    }
+
     functor_t functor = PL_new_functor(PL_new_atom(name), arity);
     term_t term = PL_new_term_ref();
 
-    int dummy;
     if (arity == 0)
         dummy = PL_cons_functor(term, functor);
     else

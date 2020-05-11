@@ -19,17 +19,17 @@ ex04b = [ what_to_do_today(monday,_A,_B), [1], 2, 100, true, 'examples/ex04.pl' 
 %ex05 = [ applast([0,1,2],_A,_B), [1], 2, 10, true, 'examples/ex05.pl' ]. % unexpected character []?
 %ex06 = [ depth(max(1,2,_A), _B), [1], 2, 10, true, 'examples/ex06.pl' ]. % unexpected character []?
 ex08 = [ relative(mary,_A), [1], 2, 10, true, 'examples/ex08.pl' ].
-ex09 = [ rp(leaf(5),_A), [1], 2, 100, true, 'examples/ex09.pl' ].
+%ex09 = [ rp(leaf(5),_A), [1], 2, 100, true, 'examples/ex09.pl' ]. % term_from_int???
 %ex10 = [ transpose([1,2,3],_A), [1], 2, 10, true, 'examples/ex10.pl' ]. % unexpected character []?
 ex11 = [ mult(s(0),_A,_B), [1], 2, 10, true, 'examples/ex11.pl' ].
-ex12 = [ hanoi(4), [1], 2, 10, true, 'examples/ex12.pl' ].
+ex12 = [ hanoi(s(0)), [1], 2, 10, true, 'examples/ex12.pl' ].
 %ex13 = [ path(0,[a,b]), [1], 2, 10, true, 'examples/ex13.pl' ]. % unexpected character
 %ex14 = [ qsort([1,2],_A,_B), [1], 2, 10, true, 'examples/ex14.pl' ]. % unexpected character
 %ex15 = [ incList([1,2],1,_B), [1], 2, 10, true, 'examples/ex15.pl' ]. % unexpected character
 %ex16 = [ flipflip(tree(leaf(0),5,leaf(0)),_A), [1], 2, 10, true, 'examples/ex16.pl' ].% invalid sorted variable
 %ex17 = [ rev([1,2],_A), [1], 2, 10, true, 'examples/ex17.pl' ].% invalid declaration: rev_arg_0 already declared
-ex18 = [ ackermann(0,2,_A), [1], 2, 100, true, 'examples/ex18.pl' ].
-ex19 = [ fib(0,_A), [1], 2, 100, true, 'examples/ex19.pl' ].
+ex18 = [ ackermann(0,s(s(0)),_A), [1], 2, 100, true, 'examples/ex18.pl' ].
+%ex19 = [ fib(0,_A), [1], 2, 100, true, 'examples/ex19.pl' ]. %term_from_int???
 %ex20 = [ pre_order(tree(1,void,void),_A), [1], 2, 10, true, 'examples/ex20.pl' ]. % unexpected character
 %ex21 = [ factorial(4,_A), [1], 2, 10, true, 'examples/ex21.pl' ]. % permission_error: =/2
 %ex22 = [ factorial(4,_A), [1], 2, 10, true, 'examples/ex22.pl' ]. % permission_error: =/2

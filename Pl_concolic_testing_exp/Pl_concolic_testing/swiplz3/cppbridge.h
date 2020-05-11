@@ -29,4 +29,5 @@ extern "C" int cpp__z3_get_model_termvar_eval(int index, const char *vn, void **
 
 extern "C" void cpp__z3_mk_term__get_app(int index, void *v, void **app);
 extern "C" void cpp__z3_mk_term__get_functor(int index, void *app, char **name, int *arity);
+extern "C" void cpp__z3_mk_term__get_app_arg_as_int(int index, void *app, int j, int *app_arg);
 extern "C" void cpp__z3_mk_term__get_app_arg(int index, void *app, int j, void **app_arg);

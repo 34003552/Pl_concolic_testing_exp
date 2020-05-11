@@ -188,14 +188,18 @@ void z3Manager::z3Bundle::mk_term_type(TList *tlist, bool need_int, bool need_li
     {
         Z3_sort int_sort = Z3_mk_int_sort(m_ctx);
 
+        Z3_func_decl ctors[1];
+        Z3_func_decl tsts[1];
+        Z3_func_decl accs[1];
+        Z3_query_constructor(m_ctx, cons__term[id__term_from_int], 1, ctors, tsts, accs);
         m_types["Term"].ctors.push_back({
             consnames__term[id__term_from_int], // term_from_int
-            Z3_mk_func_decl(m_ctx, consnames__term[id__term_from_int], 1, &int_sort, sorts[ID_TERM]), // term_from_int : Int -> Term
+            ctors[0],//Z3_mk_func_decl(m_ctx, consnames__term[id__term_from_int], 1, &int_sort, sorts[ID_TERM]), // term_from_int : Int -> Term
             {}
         });
         m_types["Term"].ctors.back().accs.push_back({
             accnames__term_from_int[0], // term_as_int
-            Z3_mk_func_decl(m_ctx, accnames__term_from_int[0], 1, &sorts[ID_TERM], int_sort) // term_as_int : Term -> Int
+            accs[0]//Z3_mk_func_decl(m_ctx, accnames__term_from_int[0], 1, &sorts[ID_TERM], int_sort) // term_as_int : Term -> Int
         });
     }
 
@@ -304,9 +308,10 @@ bool z3Manager::z3Bundle::assert_term_string(const char *z3string, bool need_int
 
     if (need_int && !need_lists) // Declaration of the constructors for Int Type
     { 
-        names[numtermvar] = m_types["Term"].ctors.back().name;
+        //names[numtermvar] = m_types["Term"].ctors.back().name;
+        //decls[numtermvar] = m_types["Term"].ctors.back().ctor;
+        names[numtermvar] = Z3_mk_string_symbol(m_ctx, "dummy_term_from_int");
         decls[numtermvar] = m_types["Term"].ctors.back().ctor;
-
         k = numtermvar + 1;
     }
 
@@ -442,7 +447,16 @@ void z3Manager::z3Bundle::mk_term__get_functor(Z3_app app, char **name, int *ari
     *name = (char*)Z3_get_symbol_string(m_ctx, sym);
     *arity = Z3_get_arity(m_ctx, f);
 }
+int z3Manager::z3Bundle::mk_term__get_app_arg_as_int(Z3_app app, int j)
+{
+    Z3_ast app_arg = Z3_get_app_arg(m_ctx, app, j);
+
+    int v;
+    Z3_get_numeral_int(m_ctx, app_arg, &v);
+    return v;
+}
 Z3_ast z3Manager::z3Bundle::mk_term__get_app_arg(Z3_app app, int j)
 {
+    //printf("Test: %s\n", Z3_ast_to_string(m_ctx, Z3_app_to_ast(m_ctx, app)));
 	return Z3_get_app_arg(m_ctx, app, j);
 }

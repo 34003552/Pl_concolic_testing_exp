@@ -91,6 +91,10 @@ void cpp__z3_mk_term__get_functor(int index, void *app, char **name, int *arity)
 {
 	z3Manager::get_manager().get_bundle(index).mk_term__get_functor((Z3_app)app, name, arity);
 }
+void cpp__z3_mk_term__get_app_arg_as_int(int index, void *app, int j, int *app_arg)
+{
+	*app_arg = z3Manager::get_manager().get_bundle(index).mk_term__get_app_arg_as_int((Z3_app)app, j);
+}
 void cpp__z3_mk_term__get_app_arg(int index, void *app, int j, void **app_arg)
 {
 	*app_arg = (void*)z3Manager::get_manager().get_bundle(index).mk_term__get_app_arg((Z3_app)app, j);

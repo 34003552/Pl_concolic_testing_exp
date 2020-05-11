@@ -75,5 +75,6 @@ public:
 
 	Z3_app mk_term__get_app(Z3_ast v);
 	void mk_term__get_functor(Z3_app app, char **name, int *arity);
+	int mk_term__get_app_arg_as_int(Z3_app app, int j);
 	Z3_ast mk_term__get_app_arg(Z3_app app, int j);
 };
