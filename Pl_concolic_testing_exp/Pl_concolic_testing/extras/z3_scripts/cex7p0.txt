@@ -1,0 +1,105 @@
+($mk_term_type (o/0 s/1 nat/1) true false)
+(push)
+($mk_term_vars A B)
+($assert_term_string
+	(and
+		(not (= (nat A) (nat (term_from_int 0))))
+		(forall ((B Term))
+			(not (= (nat A) (nat (s B))))
+		)
+	)
+	true false
+)
+(check-sat)
+($print_model)
+($get_model_termvar_eval A)
+($get_model_termvar_eval B)
+(pop)
+(push)
+($mk_term_vars A B)
+($assert_term_string
+	(and
+		(= (nat A) (nat (term_from_int 0)))
+		(exists ((B Term))
+			(= (nat A) (nat (s B)))
+		)
+	)
+	true false
+)
+(check-sat)
+(pop)
+(push)
+($mk_term_vars A B)
+($assert_term_string
+	(and
+		(exists ((A Term))
+			(= (nat B) (nat (s A))))
+		(not (= (nat B) (nat (term_from_int 0))))
+	)
+	true false
+)
+(check-sat)
+($print_model)
+($get_model_termvar_eval A)
+($get_model_termvar_eval B)
+(pop)
+
+(reset)
+
+($mk_term_type (o/0 s/1 nat/1) true false)
+
+(reset)
+
+($mk_term_type (o/0 s/1 nat/1) true false)
+(push)
+($mk_term_vars A B)
+($assert_term_string
+	(and
+		(not (= (nat (s A)) (nat (term_from_int 0))))
+		(= (nat A) (nat (term_from_int 0)))
+		(forall ((B Term))
+			(not (= (nat A) (nat (s B))))
+		)
+	)
+	true false
+)
+(check-sat)
+($print_model)
+($get_model_termvar_eval A)
+($get_model_termvar_eval B)
+(pop)
+(push)
+($mk_term_vars A B)
+($assert_term_string
+	(and
+		(not (= (nat (s A)) (nat (term_from_int 0))))
+		(= (nat A) (nat (term_from_int 0)))
+		(exists ((B Term))
+			(= (nat A) (nat (s B)))
+		)
+	)
+	true false
+)
+(check-sat)
+(pop)
+(push)
+($mk_term_vars A B)
+($assert_term_string
+	(and
+		(not (= (nat (s A)) (nat (term_from_int 0))))
+		(exists ((B Term))
+			(= (nat A) (nat (s B)))
+		)
+		(not (= (nat A) (nat (term_from_int 0))))
+	)
+	true false
+)
+(check-sat)
+($print_model)
+($get_model_termvar_eval A)
+($get_model_termvar_eval B)
+(pop)
+
+(reset)
+
+($mk_term_type (o/0 s/1 nat/1) true false)
