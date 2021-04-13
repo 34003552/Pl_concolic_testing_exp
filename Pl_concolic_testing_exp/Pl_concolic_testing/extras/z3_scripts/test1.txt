@@ -1,0 +1,11 @@
+(declare-const i Int)
+;($assert_int_string (= (+ i 1) 2))
+($assert_int_string (= i 2147483648))
+(check-sat)
+($get_model_intvar_eval i)
+
+($mk_term_type (f/1 g/0) false false)
+(declare-const t Term)
+($assert_term_string (= t (f g)) false false)
+(check-sat)
+($get_model_termvar_eval t)

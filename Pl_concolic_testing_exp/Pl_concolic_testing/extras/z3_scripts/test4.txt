@@ -1,0 +1,8 @@
+(declare-datatypes ()
+	(
+		(Dummy
+			 nil (mk (first Int) (second Real))
+		)
+		(Dummy2)
+	)
+)

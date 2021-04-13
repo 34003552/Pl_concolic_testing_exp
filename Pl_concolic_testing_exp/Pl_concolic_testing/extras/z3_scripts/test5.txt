@@ -1,0 +1,13 @@
+(declare-datatypes ()
+	(
+		(PInt zero (s (s_arg_1 PInt)))
+		(Term
+			(nat (nat_arg_1 PInt))
+		)
+	)
+)
+(declare-const A PInt)
+($assert_term_string (and (not (= (nat A) (nat zero))) (forall ((B PInt)) (not (= (nat A) (nat (s B))))))
+	false false
+)
+(check-sat)
