@@ -1,0 +1,16 @@
+(declare-sort S0)
+(define-sort S1 (T U) (Pair U T))
+(declare-datatypes () (
+	(Type0 a (f (f_arg_0 Type1) (w S0)))
+	(Type1 b (g (g_arg_0 Type0) (x (S1 Int Real))))
+))
+
+(declare-const m S0)
+(declare-const n (S1 Int Real))
+(declare-const i Type0)
+($declare-consts (j k) Type1)
+
+(assert (exists ((X (S1 Int Real))) (and (= j (g i X)) (= i (f k m)))))
+(assert (exists ((X (S1 Int Real))) (= X n)))
+(check-sat)
+(get-model)

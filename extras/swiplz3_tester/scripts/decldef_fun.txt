@@ -1,0 +1,15 @@
+(declare-fun f (Int) Int)
+(assert (= (f 0) 0))
+(check-sat)
+(get-model)
+
+(define-fun g ((x Int)) Int (f (+ x 1)))
+(assert (= (g 0) 1))
+(check-sat)
+(get-model)
+
+(define-fun-rec h ((x Int)) Int (ite (<= x 0) 0 (+ 1 (h (- x 1)))))
+(declare-const A Int)
+(assert (= (h 32) A))
+(check-sat)
+(get-model)

@@ -1,0 +1,16 @@
+($declare-consts (i j k) Real)
+(assert
+	(or
+		(and
+			(not (= i j))
+			(= i k)
+		)
+		(and
+			(= i j)
+			(not (= i k))
+		)
+	)
+)
+(check-sat)
+($eval-model-const i)
+(get-model)

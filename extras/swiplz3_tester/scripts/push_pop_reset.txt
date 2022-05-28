@@ -1,0 +1,16 @@
+(declare-const i Int)
+(push)
+(assert (= i 0))
+(check-sat)
+(get-model)
+(pop)
+(assert (not (= i 0)))
+(check-sat)
+(get-model)
+
+(reset)
+
+(declare-const i Real)
+(assert (= i 7.8))
+(check-sat)
+(get-model)

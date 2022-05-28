@@ -1,0 +1,94 @@
+/*
+Each row is expected to be in the following format:
+identifier = [concolic_goal, ground_pos, depth, delay, with_trace, file].
+*/
+
+cex1 = [ p(a,b), [1], 2, 10, true, 'examples/ex0.pl' ].
+cex2 = [ p(a), [1], 2, 10, false, 'examples/ex01.pl' ].
+cex3 = [ p(a,_Y), [1], 2, 10, false, 'examples/ex02.pl' ].
+cex4 = [ p(s(a),a), [1], 2, 10, false, 'examples/ex02.pl' ].
+cex5 = [ p(s(a),a), [], 2, 10, true, 'examples/ex02.pl' ].
+cex6 = [ p(s(a),a), [2], 2, 10, true, 'examples/ex02.pl' ].
+cex7 = [ nat(0), [1], 2, 10, false, 'examples/ex03.pl' ].
+cex8 = [ nat(0), [], 2, 10, false, 'examples/ex03.pl' ].
+%cex9 = [ generate(empty,_A,_B), [1], 2, 1000, true, 'examples/ex07.pl' ].
+
+
+boh = [ p(b), [1], 2, 10, true, 'examples/boh.pl' ].
+ex04a = [ what_to_do_today(sunday,_A,_B), [1], 2, 200, true, 'examples/ex04.pl' ].
+ex04b = [ what_to_do_today(monday,_A,_B), [1], 2, 200, true, 'examples/ex04.pl' ].
+ex05 = [ applast([0,1,2],_A,_B), [1], 2, 200, true, 'examples/ex05.pl' ].
+ex06 = [ depth(max(1,2,_A), _B), [1], 2, 500, true, 'examples/ex06.pl' ].
+ex08 = [ relative(mary,_A), [1], 2, 10, true, 'examples/ex08.pl' ].
+ex09 = [ rp(leaf(5),_A), [1], 2, 300, true, 'examples/ex09.pl' ].
+ex10 = [ transpose([1,2,3],_A), [1], 2, 10, true, 'examples/ex10.pl' ].
+ex11 = [ mult(s(0),_A,_B), [1], 2, 10, true, 'examples/ex11.pl' ].
+ex12 = [ hanoi(s(0)), [1], 2, 10, true, 'examples/ex12.pl' ].
+ex13 = [ accept([a,b]), [1], 1, 10, true, 'examples/ex13.pl' ].
+ex14 = [ qsort([1,2],_A,_B), [1], 2, 100, true, 'examples/ex14.pl' ].
+ex15 = [ incList([1,2],1,_B), [1], 3, 100, true, 'examples/ex15.pl' ].
+ex16 = [ flipflip(tree(leaf(0),5,leaf(0)),_A), [1], 2, 100, true, 'examples/ex16.pl' ].
+ex17 = [ rev([1,2],_A), [1], 2, 10, true, 'examples/ex17.pl' ].
+ex18 = [ ackermann(0,s(s(0)),_A), [1], 2, 100, true, 'examples/ex18.pl' ].
+ex19 = [ fib(0,_A), [1], 2, 100, true, 'examples/ex19.pl' ].
+ex20 = [ pre_order(tree(1,void,void),_A), [1], 2, 10, true, 'examples/ex20.pl' ].
+ex21 = [ factorial(4,_A), [1], 2, 10, true, 'examples/ex21.pl' ].
+ex22 = [ factorial(4,_A), [1], 2, 10, true, 'examples/ex22.pl' ].
+ex23 = [ contains(1,_B), [2], 2, 10, true, 'examples/ex23.pl' ].
+ex24 = [ power(_A,_B,_C,_D), [1], 2, 100, true, 'examples/ex24.pl' ].
+ex25 = [ max_length([1,2,3],2,_A), [1], 2, 100, true, 'examples/ex25.pl' ].
+ex26 = [ factorial(4,_A), [1], 2, 10, true, 'examples/ex26.pl' ].
+ex27 = [ match(a,_B), [2], 2, 10, true, 'examples/ex27.pl' ].
+foo = [ foo([1,2,3],3), [1], 2, 100, true, 'examples/foo.pl' ].
+
+
+
+%% SICStus Benchmarks %%
+boyer = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/boyer.pl' ].
+browse = [ benchmark(_,_), [1], 2, 100, true, 'examples/bench/browse.pl' ].
+chat_parser = [ benchmark(_,_), [1], 2, 1000, true, 'examples/bench/chat_parser.pl' ].
+crypt = [ benchmark(_,_), [1], 2, 100, true, 'examples/bench/crypt.pl' ].
+%deriv = [ benchmark(_,_), [1], 2, 1000, true, 'examples/bench/deriv.pl' ]. % stack overflow with findall/3 ???
+dynamic_unit_clause = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/dynamic_unit_clause.pl' ].
+%fast_mu = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/fast_mu.pl' ].
+flatten = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/flatten.pl' ]. 
+itak = [ benchmark(triple(18,12,6),_), [1], 2, 10, true, 'examples/bench/itak.pl' ].
+meta_qsort = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/meta_qsort.pl' ].
+mu = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/mu.pl' ].
+nreverse = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/nreverse.pl' ].
+nreverse_builtin = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/nreverse_builtin.pl' ].
+poly = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/poly.pl' ].
+primes = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/primes.pl' ].
+%prover = [ benchmark(_,_), [1], 2, 100, true, 'examples/bench/prover.pl' ]. %weird behavior with '!'/0
+qsort = [ benchmark(_,_), [1], 2, 100, true, 'examples/bench/qsort.pl' ].
+queens = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/queens.pl' ].
+%query = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/query.pl' ]. % stack overflow with oset_power/2
+reducer = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/reducer.pl' ].
+sendmore = [ benchmark(_,_), [1], 2, 100, true, 'examples/bench/sendmore.pl' ].
+simple_analyzer = [ benchmark(_,_), [1], 2, 100, true, 'examples/bench/simple_analyzer.pl' ].
+tak = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/tak.pl' ].
+%unify = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/unify.pl' ]. '^'/2 type error
+zebra = [ benchmark(_,_), [1], 2, 10, true, 'examples/bench/zebra.pl' ].
+
+
+
+tcex1 = [ p(a,b), [1], 2, 10, true, 'examples/typed/t_ex0.pl' ].
+tex04a = [ what_to_do_today(monday,_A,_B), [1], 2, 100, true, 'examples/typed/t_ex04.pl' ].
+tcex7 = [ nat('0'), [1], 2, 10, false, 'examples/typed/t_ex03.pl' ].
+tcex7_ = [ nat(0), [1], 2, 10, false, 'examples/typed/t_ex03_.pl' ].
+tis = [ eval(_A), [1], 1, 10, false, 'examples/typed/t_is.pl' ].
+
+
+tunk0 = [ real(0.0), [1], 2, 10, false, 'examples/typed/t_unk0.pl' ].
+tunk1 = [ boole(true), [1], 2, 10, false, 'examples/typed/t_unk1.pl' ].
+tunk2 = [ lis([0]), [1], 2, 10, false, 'examples/typed/t_unk2.pl' ].
+tunk3 = [ pai(0 - 4), [1], 2, 10, false, 'examples/typed/t_unk3.pl' ].
+tunk4 = [ plis([[0]-1]), [1], 2, 10, false, 'examples/typed/t_unk4.pl' ].
+tunk5 = [ perf(bar(4-bar(3-5.0, 1),4), bare(1, 3.0)), [1], 2, 10, false, 'examples/typed/t_unk5.pl' ].
+
+
+bar =  [ f([a]), [1], 2, 10, true, 'examples/bar.pl' ].
+
+mcex1 = [ p(a,b), [1], 2, 10, true, 'examples/mercury/m_ex0.m' ].
+mcex7 = [ nat('0'), [1], 2, 10, false, 'examples/mercury/m_ex03.m' ].
+%mbeer = [ beer(5,_B,_C), [1], 1, 10, true, 'examples/mercury/samples/beer.m' ].

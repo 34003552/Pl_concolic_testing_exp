@@ -1,0 +1,40 @@
+---------------------------------------
+swiplz3 I/O logfile
+---------------------------------------
+Execution started on Sat Apr 30 12:40:50 2022
+z3_mk_config/0
+z3_set_param_value/2
+	+ param: String = "model"
+	+ value: String = "true"
+z3_mk_context/1
+	- context_id: int = 0
+z3_mk_solver/1
+	+ context_id: int = 0
+z3_del_config/0
+z3_mk_vars/3
+	+ context_id: int = 0
+	+ var_names: String[] = { "i", "j", "k" }
+	+ var_type: String = "Real"
+z3_assert_string_/2
+	+ context_id: int = 0
+	+ assertion: String = "(assert (or (and (not (= i j)) (= i k)) (and (= i j) (not (= i k)))))"
+z3_check_sat/2
+	+ context_id: int = 0
+	- result: atom = 'sat'
+z3_eval_model_var/3
+	+ context_id: int = 0
+	+ var_name: String = "i"
+	- var_value: Term = |0|
+z3_get_model_to_string/2
+	+ context_id: int = 0
+	- model: String = "(define-fun i () Real
+  0.0)
+(define-fun j () Real
+  0.0)
+(define-fun k () Real
+  1.0)"
+z3_del_solver/1
+	+ context_id: int = 0
+z3_del_context/1
+	+ context_id: int = 0
+Execution stopped on Sat Apr 30 12:40:56 2022
