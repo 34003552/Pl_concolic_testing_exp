@@ -6,30 +6,30 @@ Because my master thesis is now outdated, I made this file to complete it and pr
 
 ![Concolic Tool Diagram](concolic_tool_diagram.png)
 
-— main.pl: the concolic tool main entry point
-— samples.pl: a loader to test the samples which are defined within the file "samples.txt"
-— concolic_tester.pl: the implementation of the concolic testing algorithm
-— concolic_helper.pl: a supervisor which provides tools to assist the concolic algorithm
-— lpmux.pl: a manager which handles the instrumented logic program
-— constr2smt.pl: translates constraints into SMT assertions
-— z3_helper.pl: an intermediate for the concolic algorithm to use z3 primitives
+- main.pl: the concolic tool main entry point
+- samples.pl: a loader to test the samples which are defined within the file "samples.txt"
+- concolic_tester.pl: the implementation of the concolic testing algorithm
+- concolic_helper.pl: a supervisor which provides tools to assist the concolic algorithm
+- lpmux.pl: a manager which handles the instrumented logic program
+- constr2smt.pl: translates constraints into SMT assertions
+- z3_helper.pl: an intermediate for the concolic algorithm to use z3 primitives
 
 ![Swiplz3 Diagram](swiplz3_diagram.png)
 
-— swiplz3.pl: an intermediate to call z3 primitives using SWI-Prolog
-— swiplc.c: a bridge between C and SWI-Prolog through a foreign language interface
-— iolog.c: write a trace of each call to z3 primitives for debugging purposes into "swiplz3.log"
-— cppbridge.cpp: a syntactic bridge between C and C++
-— z3Manager.cpp: a manager which handles interactions with the Z3 API
-— z3Bundle.cxx: a data bundle which wraps a Z3 context
-— z3DatatypeFactory.cxx: a factory that builds datatypes on demand
-— z3DatatypeHolder.cpp: holds all declared datatypes
-— z3FuncDeclHolder.cpp: holds all declared functions
+- swiplz3.pl: an intermediate to call z3 primitives using SWI-Prolog
+- swiplc.c: a bridge between C and SWI-Prolog through a foreign language interface
+- iolog.c: write a trace of each call to z3 primitives for debugging purposes into "swiplz3.log"
+- cppbridge.cpp: a syntactic bridge between C and C++
+- z3Manager.cpp: a manager which handles interactions with the Z3 API
+- z3Bundle.cxx: a data bundle which wraps a Z3 context
+- z3DatatypeFactory.cxx: a factory that builds datatypes on demand
+- z3DatatypeHolder.cpp: holds all declared datatypes
+- z3FuncDeclHolder.cpp: holds all declared functions
 
 ### Swiplz3 Primitives
 
 The following predicates are the currently available swiplz3 primitives:
-
+```
 :- type datatype ---> [string, list([string, list([string, string])])]. % [DtName, list([CtorName, list([AccName, AccType])])]
 :- type checksat_result ---> 'sat' ; 'unsat' ; 'unknown'.
 
@@ -53,6 +53,7 @@ The following predicates are the currently available swiplz3 primitives:
 :- pred z3_check_sat(+ContextID: integer, -Result: checksat_result).
 :- pred z3_get_model_to_string(+ContextID: integer, -Model: string).
 :- pred z3_eval_model_var(+ContextID: integer, +VarName: string, -VarValue: term).
+```
 
 ### Swiplz3_tester instructions
 
